@@ -29,12 +29,12 @@ implementation
 
 {$R *.dfm}
 
-uses Winapi.Windows, ServerMethodsUnit1;
+uses Winapi.Windows, uServerMethodsRest ;
 
 procedure TServerContainer1.DSServerClass1GetClass(
   DSServerClass: TDSServerClass; var PersistentClass: TPersistentClass);
 begin
-  PersistentClass := ServerMethodsUnit1.TServerRest;
+  PersistentClass := uServerMethodsRest.TServerRest;
 end;
 
 

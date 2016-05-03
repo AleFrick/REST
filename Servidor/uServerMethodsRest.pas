@@ -11,9 +11,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    function EchoString(Value: string): string;
-    function ReverseString(Value: string): string;
-    function Teste: String;
+    function Alo: String;
   end;
 {$METHODINFO OFF}
 
@@ -22,18 +20,12 @@ implementation
 
 uses System.StrUtils;
 
-function TServerRest.EchoString(Value: string): string;
-begin
-  Result := Value;
-end;
 
-function TServerRest.ReverseString(Value: string): string;
+{ TServerRest }
+
+function TServerRest.Alo: String;   // teste server
 begin
-  Result := System.StrUtils.ReverseString(Value);
-end;
-function TServerRest.Teste: String;
-begin
-  result := 'alex sandro';
+  Result := 'Cambio, to na escuta.';
 end;
 
 end.
