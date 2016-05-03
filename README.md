@@ -1,2 +1,2 @@
 # REST
-Teste com servidor REST
+Servidor resta padrão, sem funcoes.
