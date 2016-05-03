@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/03/18 13:48:19.000.432,=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/03/22 16:27:35.000.563,=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/03/22 16:57:34.000.220,=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/03/23 10:25:44.000.015,=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/05/03 08:32:03.000.873,=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/05/03 08:32:04.000.664,=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2016/05/03 08:32:04.000.556,=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2016/05/03 08:39:14.000.519,D:\Dropbox\GitHub\REST\REST\Servidor\ServerContainerUnit1.dfm=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.dfm</Transaction>
+    <Transaction>2016/05/03 08:39:14.000.519,D:\Dropbox\GitHub\REST\REST\Servidor\ServerContainerUnit1.pas=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2016/05/03 08:39:16.000.607,D:\Dropbox\GitHub\REST\REST\Servidor\ServerMethodsUnit1.pas=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2016/05/03 08:39:17.000.446,D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/05/03 08:39:17.000.446,D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.dfm=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2016/05/03 08:39:21.000.281,D:\Dropbox\GitHub\REST\REST\Servidor\Project2.dproj=C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>2016/05/03 08:51:20.398,D:\Dropbox\GitHub\REST\REST\Servidor\uServerMethodsRest.pas=D:\Dropbox\GitHub\REST\REST\Servidor\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2016/05/03 08:51:35.075,D:\Dropbox\GitHub\REST\REST\Servidor\uServerContainerRest.dfm=D:\Dropbox\GitHub\REST\REST\Servidor\ServerContainerUnit1.dfm</Transaction>
+    <Transaction>2016/05/03 08:51:35.075,D:\Dropbox\GitHub\REST\REST\Servidor\uServerContainerRest.pas=D:\Dropbox\GitHub\REST\REST\Servidor\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2016/05/03 08:51:49.970,D:\Dropbox\GitHub\REST\REST\Servidor\uRest.dfm=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.dfm</Transaction>
+    <Transaction>2016/05/03 08:51:49.970,D:\Dropbox\GitHub\REST\REST\Servidor\uRest.pas=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas</Transaction>
+    <Transaction>2016/05/03 08:52:02.321,D:\Dropbox\GitHub\REST\REST\Servidor\prjRestI.dproj=D:\Dropbox\GitHub\REST\REST\Servidor\Project2.dproj</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5"/>
+	</ActiveMobileDevice>
+</BorlandProject>
