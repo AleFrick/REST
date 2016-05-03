@@ -6,7 +6,8 @@ uses
   IdHTTPWebBrokerBridge,
   uRest in 'uRest.pas' {Form2},
   uServerMethodsRest in 'uServerMethodsRest.pas',
-  uServerContainerRest in 'uServerContainerRest.pas' {ServerContainer1: TDataModule};
+  uServerContainerRest in 'uServerContainerRest.pas' {ServerContainer1: TDataModule},
+  uPessoas in 'uPessoas.pas';
 
 {$R *.res}
 

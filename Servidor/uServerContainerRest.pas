@@ -6,7 +6,7 @@ uses System.SysUtils, System.Classes,
   Datasnap.DSTCPServerTransport,
   Datasnap.DSHTTPCommon, Datasnap.DSHTTP,
   Datasnap.DSServer, Datasnap.DSCommonServer,
-  Datasnap.DSAuth, IPPeerServer;
+  Datasnap.DSAuth, IPPeerServer, Dialogs;
 
 type
   TServerContainer1 = class(TDataModule)
@@ -29,12 +29,12 @@ implementation
 
 {$R *.dfm}
 
-uses Winapi.Windows, uServerMethodsRest ;
+uses Winapi.Windows, uServerMethodsRest , uPessoas;
 
 procedure TServerContainer1.DSServerClass1GetClass(
   DSServerClass: TDSServerClass; var PersistentClass: TPersistentClass);
 begin
-  PersistentClass := uServerMethodsRest.TServerRest;
+  PersistentClass := uServerMethodsRest.TPessoas;
 end;
 
 
