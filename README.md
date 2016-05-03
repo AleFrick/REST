@@ -1,2 +1,2 @@
 # REST
-Servidor resta padrão, sem funcoes.
+Servidor rest padrão, sem funcoes.
