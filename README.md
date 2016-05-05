@@ -1,3 +1,3 @@
 # REST
-Servidor rest padrão, efetuando alguns testes.
+Servidor rest padrão.
 * Efetuando registro de classes;
