@@ -1,2 +1,3 @@
 # REST
-Servidor rest padrão, sem funcoes.
+Servidor rest padrão, efetuando alguns testes.
+* Efetuando registro de classes;
