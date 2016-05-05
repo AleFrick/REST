@@ -1,0 +1,46 @@
+unit uServerMethodsRest;
+
+interface
+
+uses System.SysUtils, System.Classes, Datasnap.DSServer, Datasnap.DSAuth, uPessoas;
+
+type
+
+  TServerRest = class(TComponent)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function Alo(Value: String): String;
+  end;
+{
+//
+type
+  TPessoas = class(TPersistent)
+  private
+  public
+    function Testes: String;
+  end;
+}
+implementation
+
+
+uses System.StrUtils, uServerContainerRest;
+
+
+{ TServerRest }
+
+function TServerRest.Alo(Value: String): String;   // teste server
+begin
+
+  Result := ServerContainer1.DSServer1.GetNamePath;//value;
+end;
+ {
+
+function TPessoas.Testes: String;
+begin
+  Result := 'açex';
+end;
+      }
+end.
+

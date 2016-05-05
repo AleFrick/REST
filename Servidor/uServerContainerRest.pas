@@ -6,7 +6,7 @@ uses System.SysUtils, System.Classes,
   Datasnap.DSTCPServerTransport,
   Datasnap.DSHTTPCommon, Datasnap.DSHTTP,
   Datasnap.DSServer, Datasnap.DSCommonServer,
-  Datasnap.DSAuth, IPPeerServer, Dialogs;
+  Datasnap.DSAuth, IPPeerServer, Dialogs, DataSnap.DSReflect;
 
 type
   TServerContainer1 = class(TDataModule)
@@ -16,27 +16,62 @@ type
     DSServerClass1: TDSServerClass;
     procedure DSServerClass1GetClass(DSServerClass: TDSServerClass;
       var PersistentClass: TPersistentClass);
+    procedure DSServerClass2GetClass(DSServerClass: TDSServerClass;
+      var PersistentClass: TPersistentClass);
+    {}
+      procedure RegistraComp(Comp: TPersistentClass);
+      procedure MyGetClass(DSServerClass: TDSServerClass;
+      var PersistentClass: TPersistentClass);
+    {}
   private
     { Private declarations }
   public
+
   end;
+
 
 var
   ServerContainer1: TServerContainer1;
-
+  DsServer: TDSServerClass;
 implementation
 
 
 {$R *.dfm}
 
-uses Winapi.Windows, uServerMethodsRest , uPessoas;
+uses Winapi.Windows, uServerMethodsRest, Unit1;
 
 procedure TServerContainer1.DSServerClass1GetClass(
   DSServerClass: TDSServerClass; var PersistentClass: TPersistentClass);
 begin
-  PersistentClass := uServerMethodsRest.TPessoas;
+  try
+//  PersistentClass := uServerMethodsRest.TPessoas;
+
+  finally
+    //
+  end;
 end;
 
+
+procedure TServerContainer1.DSServerClass2GetClass(
+  DSServerClass: TDSServerClass; var PersistentClass: TPersistentClass);
+begin
+//  DSServer1.FindServer('TPessoas')
+//  PersistentClass := uServerMethodsRest.TServerRest;
+
+end;
+
+procedure TServerContainer1.MyGetClass(DSServerClass: TDSServerClass;
+  var PersistentClass: TPersistentClass);
+begin
+  PersistentClass := uServerMethodsRest.TServerRest;
+end;
+
+procedure TServerContainer1.RegistraComp(Comp: TPersistentClass);
+begin
+  DsServer := TDSServerClass.Create(Self);
+  DsServer.Server := DSServer1;
+  DsServer.OnGetClass := MyGetClass;
+end;
 
 end.
 

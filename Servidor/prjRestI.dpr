@@ -7,7 +7,8 @@ uses
   uRest in 'uRest.pas' {Form2},
   uServerMethodsRest in 'uServerMethodsRest.pas',
   uServerContainerRest in 'uServerContainerRest.pas' {ServerContainer1: TDataModule},
-  uPessoas in 'uPessoas.pas';
+  uPessoas in 'uPessoas.pas',
+  Unit1 in 'Unit1.pas';
 
 {$R *.res}
 

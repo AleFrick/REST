@@ -1,7 +1,6 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'Form2'
   ClientHeight = 242
   ClientWidth = 472
   Color = clBtnFace
@@ -13,4 +12,13 @@ object Form2: TForm2
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object Button1: TButton
+    Left = 176
+    Top = 112
+    Width = 75
+    Height = 25
+    Caption = 'Ligar'
+    TabOrder = 0
+    OnClick = Button1Click
+  end
 end

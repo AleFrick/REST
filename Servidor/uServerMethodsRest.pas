@@ -11,32 +11,37 @@ type
     { Private declarations }
   public
     { Public declarations }
-    function Alo: String;
+    function Alo(Value: String): String;
   end;
 {$METHODINFO OFF}
+//
+{$MethodInfo ON}
 type
   TPessoas = class(TComponent)
-    private
-
-    public
-      function Teste: String;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function Testes: String;
   end;
+{$MethodInfo OFF}
+
 implementation
 
 
-uses System.StrUtils;
+uses System.StrUtils, uServerContainerRest;
 
 
 { TServerRest }
 
-function TServerRest.Alo: String;   // teste server
+function TServerRest.Alo(Value: String): String;   // teste server
 begin
-  Result := 'Cambio, to na escuta.';
+  Result := value;
 end;
 
 { TPessoas }
 
-function TPessoas.Teste: String;
+function TPessoas.Testes: String;
 begin
   Result := 'açex';
 end;
