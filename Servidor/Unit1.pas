@@ -2,7 +2,7 @@ unit Unit1;
 
 interface
 
-uses Classes, DSServer, DSReflect, DSCommonServer, DSNames, DataBkr, uServerMethodsRest, uServerContainerRest, DSProviderDataModuleAdapter;
+uses Classes, DSServer, DSReflect, DSCommonServer, DSNames, DataBkr, uServerContainerRest, DSProviderDataModuleAdapter;
 type
 
   TSimpleServerClass = class(TDSServerClass)
@@ -20,6 +20,8 @@ type
 
 procedure RegisterServerClasses(AOwner: TComponent; AServer: TDSServer);
 implementation
+
+uses uPessoas;
 
 constructor TSimpleServerClass.Create(AOwner: TComponent; AServer: TDSCustomServer; AClass: TPersistentClass; ExposeProvider: Boolean;
   ALifeCycle: String);
@@ -47,6 +49,5 @@ procedure RegisterServerClasses(AOwner: TComponent; AServer: TDSServer);
 begin
   Assert(AServer.Started = False, 'Não é possível adicionar classes com o servidor ativo');
   TSimpleServerClass.Create(AOwner, AServer, TPessoas   , False, TDSLifeCycle.Session);
-  TSimpleServerClass.Create(AOwner, AServer, TServerRest, False, TDSLifeCycle.Session);
 end;
 end.

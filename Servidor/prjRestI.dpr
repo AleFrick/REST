@@ -8,7 +8,8 @@ uses
   uServerMethodsRest in 'uServerMethodsRest.pas',
   uServerContainerRest in 'uServerContainerRest.pas' {ServerContainer1: TDataModule},
   uPessoas in 'uPessoas.pas',
-  Unit1 in 'Unit1.pas';
+  Unit1 in 'Unit1.pas',
+  uConection in 'uConection.pas';
 
 {$R *.res}
 

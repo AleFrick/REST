@@ -1,0 +1,25 @@
+unit uPessoas;
+
+interface
+
+uses System.SysUtils, System.Classes, Datasnap.DSServer, Datasnap.DSAuth;
+
+type
+{$METHODINFO ON}
+  TPessoas = class(TComponent)
+  private
+
+  public
+    function Teste: string;
+  end;
+{$METHODINFO OFF}
+implementation
+
+{ TPessoas }
+
+function TPessoas.Teste: string;
+begin
+  Result := 'bombio';
+end;
+
+end.

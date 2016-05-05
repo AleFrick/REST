@@ -14,7 +14,7 @@ type
     function Alo(Value: String): String;
   end;
 {$METHODINFO OFF}
-//
+
 {$MethodInfo ON}
 type
   TPessoas = class(TComponent)
