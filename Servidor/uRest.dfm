@@ -1,8 +1,9 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  ClientHeight = 176
-  ClientWidth = 191
+  ActiveControl = Button1
+  ClientHeight = 502
+  ClientWidth = 576
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -41,7 +42,6 @@ object Form2: TForm2
     Width = 121
     Height = 21
     TabOrder = 1
-    Text = 'Edit1'
   end
   object Edit2: TEdit
     Left = 34
@@ -50,6 +50,40 @@ object Form2: TForm2
     Height = 21
     TabOrder = 2
     Text = 'Edit2'
+  end
+  object Button2: TButton
+    Left = 256
+    Top = 256
+    Width = 75
+    Height = 25
+    Caption = 'Button2'
+    TabOrder = 3
+    OnClick = Button2Click
+  end
+  object DBGrid1: TDBGrid
+    Left = 32
+    Top = 320
+    Width = 457
+    Height = 120
+    TabOrder = 4
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object ClientDataSet1: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProvider1'
+    Left = 312
+    Top = 152
+    object ClientDataSet1NOME_PESSOA: TWideStringField
+      FieldName = 'NOME_PESSOA'
+      Required = True
+      Size = 40
+    end
   end
   object SQLConnection1: TSQLConnection
     ConnectionName = 'DB Geral'
@@ -68,27 +102,26 @@ object Form2: TForm2
       'HostName=DB Geral'
       'Database=D:\Dropbox\TESTES FUNCOES\BD Clientes\Clientes.db')
     Connected = True
-    Left = 104
+    Left = 312
     Top = 8
   end
-  object SQLDataSet1: TSQLDataSet
-    Active = True
-    CommandText = 'PESSOAS'
-    CommandType = ctTable
-    DbxCommandType = 'Dbx.Table'
+  object SQLQuery1: TSQLQuery
     MaxBlobSize = -1
     Params = <>
+    SQL.Strings = (
+      'select nome_pessoa from pessoas')
     SQLConnection = SQLConnection1
-    Left = 104
-    Top = 56
-    object SQLDataSet1ID_PESSOA: TLargeintField
-      FieldName = 'ID_PESSOA'
-      Required = True
-    end
-    object SQLDataSet1NOME_PESSOA: TWideStringField
-      FieldName = 'NOME_PESSOA'
-      Required = True
-      Size = 40
-    end
+    Left = 192
+    Top = 80
+  end
+  object DataSetProvider1: TDataSetProvider
+    DataSet = SQLQuery1
+    Left = 312
+    Top = 80
+  end
+  object DataSource1: TDataSource
+    DataSet = ClientDataSet1
+    Left = 192
+    Top = 152
   end
 end

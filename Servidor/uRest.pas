@@ -5,7 +5,9 @@ interface
 uses Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   IPPeerServer,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, Data.DB, Data.SqlExpr, Data.DbxSqlite, Data.FMTBcd;
+  Vcl.StdCtrls, Data.DB, Data.SqlExpr, Data.DbxSqlite, Data.FMTBcd,  System.IOUtils,
+  Datasnap.DBClient, Datasnap.Provider, Vcl.Mask, Vcl.DBCtrls, Vcl.Grids,
+  Vcl.DBGrids;
 
 type
   TForm2 = class(TForm)
@@ -14,11 +16,16 @@ type
     Edit2: TEdit;
     Label1: TLabel;
     Label2: TLabel;
+    ClientDataSet1: TClientDataSet;
     SQLConnection1: TSQLConnection;
-    SQLDataSet1: TSQLDataSet;
-    SQLDataSet1ID_PESSOA: TLargeintField;
-    SQLDataSet1NOME_PESSOA: TWideStringField;
+    SQLQuery1: TSQLQuery;
+    DataSetProvider1: TDataSetProvider;
+    Button2: TButton;
+    DBGrid1: TDBGrid;
+    DataSource1: TDataSource;
+    ClientDataSet1NOME_PESSOA: TWideStringField;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-uses uServerMethodsRest, Unit1, uServerContainerRest, uPessoas;
+uses uServerMethodsRest, Unit1, uServerContainerRest, uPessoas, uConection;
 
 procedure TForm2.Button1Click(Sender: TObject);
 begin
@@ -60,6 +67,46 @@ begin
       Button1.Caption := 'Ligar';
     end;
   end;
+end;
+
+procedure TForm2.Button2Click(Sender: TObject);
+var
+  Conn: TConection;
+  SqlConn: TSQLConnection;
+  SqlQry: TSQLQuery;
+  Provider: TDataSetProvider;
+  Cli: TClientDataSet;
+  Dtsource: TDataSource;
+  a: String;
+begin
+  try
+    Conn := TConection.Create(Self);
+    SqlConn := TSQLConnection.Create(Self);
+    SqlQry := TSQLQuery.Create(Self);
+    Provider := TDataSetProvider.Create(Self);
+    Cli := TClientDataSet.Create(Self);
+    Dtsource := TDataSource.Create(Self);
+
+    if Conn.NewConection('DB Geral','Sqlite', SqlConn) then
+      if Conn.NewQuery('PESSOAS',SqlConn, SqlQry) then
+        if Conn.NewDtSetProvider(SqlQry, Provider) then
+        begin
+          SqlQry.Active := true;
+          if Conn.NewClientDtSet(Provider, SqlQry ,Cli) then
+            if Conn.NewDtSource(Cli,Dtsource) then
+              DBGrid1.DataSource := Dtsource;
+        end;
+
+  except
+     // error
+  end;
+  {
+  FreeAndNil(Conn);
+  FreeAndNil(SqlConn);
+  FreeAndNil(SqlQry);
+  FreeAndNil(Provider);
+  FreeAndNil(Cli);
+  FreeAndNil(Dtsource);}
 end;
 
 end.

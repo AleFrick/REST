@@ -23,8 +23,8 @@
     <Transaction>2016/05/03 15:26:39.000.722,=D:\Dropbox\GitHub\REST\REST\Servidor\Unit1.pas</Transaction>
     <Transaction>2016/05/03 15:26:57.000.753,D:\Dropbox\GitHub\REST\REST\Servidor\Unit1.pas=D:\Dropbox\GitHub\REST\REST\Servidor\uPessoas.pas</Transaction>
     <Transaction>2016/05/04 14:39:56.000.211,=D:\Dropbox\GitHub\REST\REST\Servidor\Unit1.pas</Transaction>
-    <Transaction>2016/05/05 16:38:29.608,=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas</Transaction>
-    <Transaction>2016/05/05 16:38:53.375,D:\Dropbox\GitHub\REST\REST\Servidor\uConection.pas=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas</Transaction>
+    <Transaction>2016/05/05 16:38:29.000.608,=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas</Transaction>
+    <Transaction>2016/05/05 16:38:53.000.375,D:\Dropbox\GitHub\REST\REST\Servidor\uConection.pas=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
 		<NoProfile iOSSimulator="iPhone5"/>
