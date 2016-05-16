@@ -42,21 +42,18 @@ begin
     Provider := TDataSetProvider.Create(Self);
     Cli := TClientDataSet.Create(Self);
 
-    if Conn.NewConection('DB Geral','Sqlite', SqlConn) then
+    if Conn.NewConection('DB Geral',tpSqlite,'D:\Dropbox\TESTES FUNCOES\BD Clientes\Clientes.db', SqlConn) then
       if Conn.NewQuery('PESSOAS',SqlConn, SqlQry) then
         if Conn.NewDtSetProvider(SqlQry, Provider) then
         begin
           SqlQry.Active := true;
-//          Result := SqlQry.FieldByName('ID_PESSOA').AsString;
           if Conn.NewClientDtSet(Provider, SqlQry ,Cli) then
             Result := Conn.DataToJson(SqlQry);
         end;
   except
-     // error
+     on E: Exception do    // nao ta funcionando ... VERIFICAR
+       Result := Conn.StrToJson( E.ClassName+' error raised, with message :' + E.Message);
   end;
-  // criar sql conn
-  // criar dtset
-  // criar dtsource
   FreeAndNil(Conn);
   FreeAndNil(SqlConn);
   FreeAndNil(SqlQry);

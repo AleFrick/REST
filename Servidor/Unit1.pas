@@ -48,6 +48,6 @@ end;
 procedure RegisterServerClasses(AOwner: TComponent; AServer: TDSServer);
 begin
   Assert(AServer.Started = False, 'Não é possível adicionar classes com o servidor ativo');
-  TSimpleServerClass.Create(AOwner, AServer, TPessoas   , False, TDSLifeCycle.Session);
+  TSimpleServerClass.Create(AOwner, AServer, TPessoas , False, TDSLifeCycle.Session);
 end;
 end.

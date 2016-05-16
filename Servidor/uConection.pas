@@ -6,16 +6,21 @@ uses System.SysUtils, System.Classes, Datasnap.DSServer, Datasnap.DSAuth, Data.D
      Data.DbxSqlite, Data.FMTBcd, Datasnap.Provider, Datasnap.DBClient, System.IOUtils, Json;
 
 type
+  TTpDataBases = (tpSqlite, tpASA, tpESE, tpDataSnap, tpDB2, tpFirebird, tpIBLite,
+                   tpInformix, tpInterbase, tpMSSQL, tpMySQL, tpOdbc, tpOracle);
+
+type
   TConection = class(TComponent)
     private
-
+      function GetTypeDB(TpDb: TTpDataBases): String;
     public
-      function NewConection(ConnectionName, DriverName: String; OUT SqlConn: TSQLConnection): Boolean;
+      function NewConection(ConnectionName: String; DriverName: TTpDataBases; WayToDb: String; OUT SqlConn: TSQLConnection): Boolean;
       function NewQuery(NameTable: String; SqlConn: TSQLConnection; OUT SqlQry: TSQLQuery): Boolean;
       function NewDtSetProvider(DtSet: TDataSet; out dtSetProvider: TDataSetProvider): Boolean;
       function NewClientDtSet(ProviderName: TDataSetProvider; DtSet: TDataSet; out CliDtSet: TClientDataSet): Boolean;
       function NewDtSource(DtSet: TDataSet; out DtSource: TDataSource): Boolean;
       function DataToJson(DtSet: TDataSet): TJSONArray;
+      function StrToJson(Value: String): TJSONArray;
   end;
 
 implementation
@@ -55,6 +60,25 @@ begin
   end;
 end;
 
+function TConection.GetTypeDB(TpDb: TTpDataBases): String;
+begin
+  case TpDb of
+    tpSqlite: Result := 'Sqlite';
+    tpASA: Result := 'ASA';
+    tpESE: Result := 'ESE';
+    tpDataSnap: Result := 'DataSnap';
+    tpDB2: Result := 'DB2';
+    tpFirebird: Result := 'Firebird';
+    tpIBLite: Result := 'IBLite';
+    tpInformix: Result := 'Informix';
+    tpInterbase: Result := 'Interbase';
+    tpMSSQL: Result := 'MSSQL';
+    tpMySQL: Result := 'MySQL';
+    tpOdbc: Result := 'Odbc';
+    tpOracle: Result := 'Oracle';
+  end;
+end;
+
 function TConection.NewClientDtSet(ProviderName: TDataSetProvider; DtSet: TDataSet;
   out CliDtSet: TClientDataSet): Boolean;
 var
@@ -64,18 +88,8 @@ var
 begin
   try
     CliDtSet.ProviderName := ProviderName.Name;
- //   CliDtSet.Fields.Clear;
     for i := 0 to DtSet.FieldCount-1 do
     begin
-    {
-      TField('TESTE[') := TField.Create(Self);
-      TField('TESTE').Name := 'TESTE';
-
-      Campo := TField.Create(CliDtSet);
-      Campo.SetFieldType(ftVariant);
-      Campo.Name := DtSet.Fields[i].FieldName;
-
-      CliDtSet.Fields.Add(Campo);       }
       CliDtSet.FieldDefs.Add(DtSet.Fields[i].FieldName, ftString , 40,false);
     end;
     CliDtSet.CreateDataSet;
@@ -87,25 +101,27 @@ begin
 end;
 
 // SqlConnection
-function TConection.NewConection(ConnectionName, DriverName: String;
-  out SqlConn: TSQLConnection): Boolean;
+function TConection.NewConection(ConnectionName: String; DriverName: TTpDataBases;
+                            WayToDb: String; OUT SqlConn: TSQLConnection): Boolean;
 var
   SqlConn1: TSQLConnection;
+  teste: String;
 begin
   try
     with SqlConn do
     begin
-      ConnectionName := 'DB Geral';//ConnectionName;  revisar para ficar generico
-      DriverName := 'Sqlite';//DriverName;           revisar para ficar generico
-      Params.Add('DriverName=Sqlite');
-      Params.Add('DriverUnit=Data.DbxSqlite');
-      Params.Add('DriverPackageLoader=TDBXSqliteDriverLoader,DBXSqliteDriver200.bp');
+      teste := '';//GetTypeDB(DriverName);
+      ConnectionName := ConnectionName;
+      DriverName := teste;
+      Params.Add('DriverName='+ teste{GetTypeDB(DriverName)}); // rever
+      Params.Add('DriverUnit=Data.DbxSqlite'); // rever
+      Params.Add('DriverPackageLoader=TDBXSqliteDriverLoader,DBXSqliteDriver200.bp'); // rever
       Params.Add('l');
-      Params.Add('MetaDataPackageLoader=TDBXSqliteMetaDataCommandFactory,DbxSqlite');
+      Params.Add('MetaDataPackageLoader=TDBXSqliteMetaDataCommandFactory,DbxSqlite'); // rever
       Params.Add('Driver200.bpl');
       Params.Add('FailIfMissing=false');
-      Params.Add('HostName=DB Geral');
-      Params.Add('Database=D:\Dropbox\TESTES FUNCOES\BD Clientes\Clientes.db');
+      Params.Add('HostName='+ ConnectionName); //
+      Params.Add('Database='+WayToDb); //'Database=D:\Dropbox\TESTES FUNCOES\BD Clientes\Clientes.db'); // veriavel
       LoginPrompt := False;
       Connected := True;
       Name := 'Conn';
@@ -128,12 +144,26 @@ begin
       Close;
       MaxBlobSize := -1;
       SQL.Clear;
-      SQL.Text := 'select * from pessoas';
+      SQL.Text := 'select * from '+ NameTable;
       SQLConnection := SqlConn;
     end;
     Result := True;
   except
     Result := False;
+  end;
+end;
+
+function TConection.StrToJson(Value: String): TJSONArray;
+var
+  StrJson: TJSONObject;
+begin
+   Result := TJSONArray.Create;
+  try
+    StrJson.AddPair(TJSONPair.Create(Value,'') );
+    Result.AddElement(StrJson);
+  except
+    StrJson.AddPair(TJSONPair.Create('Nada feito','') );
+    Result.AddElement(StrJson);
   end;
 end;
 

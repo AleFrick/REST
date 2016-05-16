@@ -11,8 +11,8 @@
     <Transaction>2016/05/03 08:39:14.000.519,C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.dfm=D:\Dropbox\GitHub\REST\REST\Servidor\ServerContainerUnit1.dfm</Transaction>
     <Transaction>2016/05/03 08:39:14.000.519,C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas=D:\Dropbox\GitHub\REST\REST\Servidor\ServerContainerUnit1.pas</Transaction>
     <Transaction>2016/05/03 08:39:16.000.607,C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas=D:\Dropbox\GitHub\REST\REST\Servidor\ServerMethodsUnit1.pas</Transaction>
-    <Transaction>2016/05/03 08:39:17.000.446,C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Unit2.pas=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas</Transaction>
     <Transaction>2016/05/03 08:39:17.000.446,C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Unit2.dfm=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.dfm</Transaction>
+    <Transaction>2016/05/03 08:39:17.000.446,C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Unit2.pas=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas</Transaction>
     <Transaction>2016/05/03 08:39:21.000.281,C:\Users\alex.frick\Documents\Embarcadero\Studio\Projects\Project2.dproj=D:\Dropbox\GitHub\REST\REST\Servidor\Project2.dproj</Transaction>
     <Transaction>2016/05/03 08:51:20.000.398,D:\Dropbox\GitHub\REST\REST\Servidor\ServerMethodsUnit1.pas=D:\Dropbox\GitHub\REST\REST\Servidor\uServerMethodsRest.pas</Transaction>
     <Transaction>2016/05/03 08:51:35.000.075,D:\Dropbox\GitHub\REST\REST\Servidor\ServerContainerUnit1.dfm=D:\Dropbox\GitHub\REST\REST\Servidor\uServerContainerRest.dfm</Transaction>
@@ -25,6 +25,8 @@
     <Transaction>2016/05/04 14:39:56.000.211,=D:\Dropbox\GitHub\REST\REST\Servidor\Unit1.pas</Transaction>
     <Transaction>2016/05/05 16:38:29.000.608,=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas</Transaction>
     <Transaction>2016/05/05 16:38:53.000.375,D:\Dropbox\GitHub\REST\REST\Servidor\uConection.pas=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas</Transaction>
+    <Transaction>2016/05/11 16:03:13.000.069,=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas</Transaction>
+    <Transaction>2016/05/11 16:05:47.000.556,D:\Dropbox\GitHub\REST\REST\Servidor\uBasicClass.pas=D:\Dropbox\GitHub\REST\REST\Servidor\Unit2.pas</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
 		<NoProfile iOSSimulator="iPhone5"/>

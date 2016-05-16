@@ -2,8 +2,8 @@ object Form2: TForm2
   Left = 0
   Top = 0
   ActiveControl = Button1
-  ClientHeight = 502
-  ClientWidth = 576
+  ClientHeight = 382
+  ClientWidth = 543
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -51,34 +51,13 @@ object Form2: TForm2
     TabOrder = 2
     Text = 'Edit2'
   end
-  object Button2: TButton
-    Left = 256
-    Top = 256
-    Width = 75
-    Height = 25
-    Caption = 'Button2'
-    TabOrder = 3
-    OnClick = Button2Click
-  end
-  object DBGrid1: TDBGrid
-    Left = 32
-    Top = 320
-    Width = 457
-    Height = 120
-    TabOrder = 4
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-  end
   object ClientDataSet1: TClientDataSet
     Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider1'
-    Left = 312
-    Top = 152
+    Left = 248
+    Top = 128
     object ClientDataSet1NOME_PESSOA: TWideStringField
       FieldName = 'NOME_PESSOA'
       Required = True
@@ -102,8 +81,8 @@ object Form2: TForm2
       'HostName=DB Geral'
       'Database=D:\Dropbox\TESTES FUNCOES\BD Clientes\Clientes.db')
     Connected = True
-    Left = 312
-    Top = 8
+    Left = 248
+    Top = 16
   end
   object SQLQuery1: TSQLQuery
     MaxBlobSize = -1
@@ -112,16 +91,16 @@ object Form2: TForm2
       'select nome_pessoa from pessoas')
     SQLConnection = SQLConnection1
     Left = 192
-    Top = 80
+    Top = 72
   end
   object DataSetProvider1: TDataSetProvider
     DataSet = SQLQuery1
-    Left = 312
-    Top = 80
+    Left = 248
+    Top = 72
   end
   object DataSource1: TDataSource
     DataSet = ClientDataSet1
-    Left = 192
-    Top = 152
+    Left = 184
+    Top = 136
   end
 end

@@ -63,7 +63,7 @@ end;
 procedure TServerContainer1.MyGetClass(DSServerClass: TDSServerClass;
   var PersistentClass: TPersistentClass);
 begin
-  PersistentClass := uServerMethodsRest.TServerRest;
+//  PersistentClass := uServerMethodsRest.TServerRest;
 end;
 
 procedure TServerContainer1.RegistraComp(Comp: TPersistentClass);

@@ -1,4 +1,4 @@
-unit uRest;
+  unit uRest;
 
 interface
 
@@ -20,8 +20,6 @@ type
     SQLConnection1: TSQLConnection;
     SQLQuery1: TSQLQuery;
     DataSetProvider1: TDataSetProvider;
-    Button2: TButton;
-    DBGrid1: TDBGrid;
     DataSource1: TDataSource;
     ClientDataSet1NOME_PESSOA: TWideStringField;
     procedure Button1Click(Sender: TObject);
@@ -48,10 +46,7 @@ begin
   begin
     if Button1.Caption = 'Ligar' then
     begin
-      {
-        REVER DESLIGAMENTO SERVIDOR
-      }
-
+      {        REVER DESLIGAMENTO SERVIDOR      }
       try
         RegisterServerClasses(TComponent(uServerMethodsRest.TPessoas) , DSServer1);
         DSServer1.Start;
@@ -79,27 +74,7 @@ var
   Dtsource: TDataSource;
   a: String;
 begin
-  try
-    Conn := TConection.Create(Self);
-    SqlConn := TSQLConnection.Create(Self);
-    SqlQry := TSQLQuery.Create(Self);
-    Provider := TDataSetProvider.Create(Self);
-    Cli := TClientDataSet.Create(Self);
-    Dtsource := TDataSource.Create(Self);
 
-    if Conn.NewConection('DB Geral','Sqlite', SqlConn) then
-      if Conn.NewQuery('PESSOAS',SqlConn, SqlQry) then
-        if Conn.NewDtSetProvider(SqlQry, Provider) then
-        begin
-          SqlQry.Active := true;
-          if Conn.NewClientDtSet(Provider, SqlQry ,Cli) then
-            if Conn.NewDtSource(Cli,Dtsource) then
-              DBGrid1.DataSource := Dtsource;
-        end;
-
-  except
-     // error
-  end;
   {
   FreeAndNil(Conn);
   FreeAndNil(SqlConn);
