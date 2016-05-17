@@ -14,6 +14,11 @@ Uses
      Data.DbxSqlite, Data.FMTBcd, Datasnap.Provider, Datasnap.DBClient, System.IOUtils, Json;
 
 type
+  TTpDataBases = (tpSqlite, tpASA, tpESE, tpDataSnap, tpDB2, tpFirebird, tpIBLite,
+                   tpInformix, tpInterbase, tpMSSQL, tpMySQL, tpOdbc, tpOracle);
+
+type
+{$METHODINFO ON}
   TBasicClass = class(TComponent)
   private
     // private method
@@ -34,70 +39,96 @@ type
     // protected method
   public
     // public method
-    constructor Create(pSqlConn: TSQLConnection; pSqlQry: TSQLQuery; pSqlDataSet: TSQLDataSet;
-                       pProvoider: TDataSetProvider; pCli: TClientDataSet;
-                       pDtSource: TDataSource); overload;
+{    constructor Create(pSqlConn: TSQLConnection; pSqlQry: TSQLQuery;
+                       pSqlDataSet: TSQLDataSet; pProvoider: TDataSetProvider;
+                       pCli: TClientDataSet; pDtSource: TDataSource); overload;}
+    {}
     // nao sei o que usar de parametro
-    function {create} Post(pTable: string; pColum, pValue: OleVariant): TJSONString;
-    function {read}   Get(pTable: String; pColum, pValue: Olevariant): TJSONString;
-    function {update} Put(pTable: String; pColum, pValue: Olevariant): TJSONString;
-    function {delete} Delete(pTable: String; pColum, pValue: Olevariant):TJSONString;
+    function {create} Post(pTable: string; pColum, pValue: OleVariant): String;
+    function {read}   Get(pTable: String; pColum, pValue: Olevariant): String;
+    function {update} Put(pTable: String; pColum, pValue: Olevariant): String;
+    function {delete} Delete(pTable: String; pColum, pValue: Olevariant):String;
+    function ppost(Value: String): String;
+
   end;
+{$METHODINFO OFF}
+  // classe nao registrada
+  TFunctionClass = class(TComponent)
+    private
+
+    protected
+
+    public
+      function StrToJson(Value: String): TJSONArray;
+  end;
+Const
+  db = 'D:\Dropbox\TESTES FUNCOES\BD Clientes\Clientes.db';
 
 implementation
 
 uses uConection;
 
 { TBasicClass }
-
-constructor TBasicClass.Create(pSqlConn: TSQLConnection; pSqlQry: TSQLQuery;
-                               pSqlDataSet: TSQLDataSet; pProvoider: TDataSetProvider;
-                               pCli: TClientDataSet; pDtSource: TDataSource);
+// drivename, connectionname, way to db
+{constructor TBasicClass.Create(pSqlConn: TSQLConnection; pSqlQry: TSQLQuery;
+                       pSqlDataSet: TSQLDataSet; pProvoider: TDataSetProvider;
+                       pCli: TClientDataSet; pDtSource: TDataSource);
+var
+  con: TConection;
 begin
   try
-  if (pSqlConn is nil) then
-    if not pSqlDataSet = nil then
-      if not pProvoider = nil then
-        if not pcli = nil then
-          if not pDtSource = nil then
-          begin
-            SqlConn := pSqlConn;
-            SqlQry := pSqlQry;
-            SqlDtSet := pSqlDataSet;
-            Provider := pProvoider;
-            Client := pCli;
-            DtSource := pDtSource;
-          end;
-  except
 
+  except
+    // erro
   end;
 end;
-
+ }
 function TBasicClass.Delete(pTable: String; pColum,
-  pValue: Olevariant): TJSONString;
+  pValue: Olevariant): String;
 var
   I: Integer;
 begin
 // del
-  High(pColum);
+//  High(pColum);
 end;
 
 function TBasicClass.Get(pTable: String; pColum,
-  pValue: Olevariant): TJSONString;
+  pValue: Olevariant): String;
 begin
-// get
+ //
 end;
 
 function TBasicClass.Post(pTable: string; pColum,
-  pValue: OleVariant): TJSONString;
+  pValue: OleVariant): String;
 begin
 // post
 end;
 
+function TBasicClass.ppost(Value: String): String;
+begin
+  Result := Value;
+end;
+
 function TBasicClass.Put(pTable: String; pColum,
-  pValue: Olevariant): TJSONString;
+  pValue: Olevariant): String;
 begin
 // put
+end;
+
+{ TFunctionClass }
+
+function TFunctionClass.StrToJson(Value: String): TJSONArray;
+var
+  StrJson: TJSONObject;
+begin
+   Result := TJSONArray.Create;
+  try
+    StrJson.AddPair(TJSONPair.Create(Value,'') );
+    Result.AddElement(StrJson);
+  except
+    StrJson.AddPair(TJSONPair.Create('Nada feito','') );
+    Result.AddElement(StrJson);
+  end;
 end;
 
 end.

@@ -19,11 +19,22 @@ implementation
 
 { TPessoas }
 
-uses uConection;
+uses uConection, uClassTest;
 
 function TPessoas.Hello: string;
+var
+  a: tTestClass;
+  Conn: TConection;
+  SqlConn: TSQLConnection;
+  SqlQry: TSQLQuery;
+  SqlDtSet: TSQLDataSet;
+  Provider: TDataSetProvider;
+  Cli: TClientDataSet;
+  Dtsource: TDataSource;
 begin
   Result := 'Hello bro, how are you?';
+
+//  a := tTestClass.Create(SqlConn, SqlQry, SqlDtSet, Provider, Cli,Dtsource);
 end;
 
 function TPessoas.TesteBD: TJSONArray;

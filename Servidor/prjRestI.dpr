@@ -10,7 +10,8 @@ uses
   uPessoas in 'uPessoas.pas',
   Unit1 in 'Unit1.pas',
   uConection in 'uConection.pas',
-  uBasicClass in 'uBasicClass.pas';
+  uBasicClass in 'uBasicClass.pas',
+  uClassTest in 'uClassTest.pas';
 
 {$R *.res}
 

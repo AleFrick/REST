@@ -21,7 +21,7 @@ type
 procedure RegisterServerClasses(AOwner: TComponent; AServer: TDSServer);
 implementation
 
-uses uPessoas;
+uses uPessoas, uClassTest;
 
 constructor TSimpleServerClass.Create(AOwner: TComponent; AServer: TDSCustomServer; AClass: TPersistentClass; ExposeProvider: Boolean;
   ALifeCycle: String);
@@ -48,6 +48,7 @@ end;
 procedure RegisterServerClasses(AOwner: TComponent; AServer: TDSServer);
 begin
   Assert(AServer.Started = False, 'Não é possível adicionar classes com o servidor ativo');
-  TSimpleServerClass.Create(AOwner, AServer, TPessoas , False, TDSLifeCycle.Session);
+  TSimpleServerClass.Create(AOwner, AServer, TPersistentClass(AOwner) , False, TDSLifeCycle.Session);
+//  TSimpleServerClass.Create(TComponent(tTestClass), AServer, tTestClass , False, TDSLifeCycle.Session);
 end;
 end.

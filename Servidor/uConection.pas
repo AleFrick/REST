@@ -5,6 +5,7 @@ interface
 uses System.SysUtils, System.Classes, Datasnap.DSServer, Datasnap.DSAuth, Data.DB, Data.SqlExpr,
      Data.DbxSqlite, Data.FMTBcd, Datasnap.Provider, Datasnap.DBClient, System.IOUtils, Json;
 
+// trocar de lugar... vai ser da classe basica
 type
   TTpDataBases = (tpSqlite, tpASA, tpESE, tpDataSnap, tpDB2, tpFirebird, tpIBLite,
                    tpInformix, tpInterbase, tpMSSQL, tpMySQL, tpOdbc, tpOracle);
@@ -14,7 +15,7 @@ type
     private
       function GetTypeDB(TpDb: TTpDataBases): String;
     public
-      function NewConection(ConnectionName: String; DriverName: TTpDataBases; WayToDb: String; OUT SqlConn: TSQLConnection): Boolean;
+      function NewConection(ConnectionName: String; pDriverName: TTpDataBases; WayToDb: String; OUT SqlConn: TSQLConnection): Boolean;
       function NewQuery(NameTable: String; SqlConn: TSQLConnection; OUT SqlQry: TSQLQuery): Boolean;
       function NewDtSetProvider(DtSet: TDataSet; out dtSetProvider: TDataSetProvider): Boolean;
       function NewClientDtSet(ProviderName: TDataSetProvider; DtSet: TDataSet; out CliDtSet: TClientDataSet): Boolean;
@@ -101,19 +102,20 @@ begin
 end;
 
 // SqlConnection
-function TConection.NewConection(ConnectionName: String; DriverName: TTpDataBases;
+function TConection.NewConection(ConnectionName: String; pDriverName: TTpDataBases;
                             WayToDb: String; OUT SqlConn: TSQLConnection): Boolean;
 var
   SqlConn1: TSQLConnection;
   teste: String;
 begin
+  // create send the class connection, i use this class with mother then i will kill component in the ends activit
   try
     with SqlConn do
     begin
       teste := '';//GetTypeDB(DriverName);
       ConnectionName := ConnectionName;
-      DriverName := teste;
-      Params.Add('DriverName='+ teste{GetTypeDB(DriverName)}); // rever
+      DriverName := GetTypeDB(pDriverName);
+      Params.Add('DriverName='+ GetTypeDB(pDriverName)); // rever
       Params.Add('DriverUnit=Data.DbxSqlite'); // rever
       Params.Add('DriverPackageLoader=TDBXSqliteDriverLoader,DBXSqliteDriver200.bp'); // rever
       Params.Add('l');

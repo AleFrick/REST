@@ -1,0 +1,30 @@
+unit uClassTest;
+
+interface
+
+uses uBasicClass, System.SysUtils, System.Classes, Json;
+
+type
+{$METHODINFO ON}
+  tTestClass = class(TBasicClass)
+  private
+  //private methods
+  protected
+  //protected methods
+  public
+  //public methods
+    function teste(Value: String): TJSONArray;
+{$METHODINFO OFF}
+end;
+
+implementation
+
+
+{ tTestClass }
+
+function tTestClass.teste(Value: String): TJSONArray;
+begin
+  Result := StrToJson(Value);
+end;
+
+end.
