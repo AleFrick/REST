@@ -13,6 +13,7 @@ type
   public
     function Hello: string;
     function TesteBD: TJSONArray;
+    function Sorteio: String;
   end;
 {$METHODINFO OFF}
 implementation
@@ -23,18 +24,100 @@ uses uConection, uClassTest;
 
 function TPessoas.Hello: string;
 var
-  a: tTestClass;
+  a: Integer;
+begin
+  a := Random(100000);
+  if (a > 0) and (a < 48999) then
+    Result := 'Numero sorteado: ' + IntToStr(a) + ' Valor prêmio: 100'
+  else if (a > 49000) and (a < 73999) then
+      Result := 'Numero sorteado: ' + IntToStr(a) + ' Valor prêmio: 1000'
+  else if (a > 74000) and (a < 88999) then
+      Result := 'Numero sorteado: ' + IntToStr(a) + ' Valor prêmio: 2000'
+  else if (a > 89000) and (a < 98999) then
+      Result := 'Numero sorteado: ' + IntToStr(a) + ' Valor prêmio: 3000'
+  else if (a > 99000) and (a < 10000) then
+      Result := 'Numero sorteado: ' + IntToStr(a) + ' Valor prêmio: 10000'
+  else Result := 'Numero sorteado: 24 Valor prêmio: 100';
+
+
+end;
+
+function TPessoas.Sorteio: String;
+var
   Conn: TConection;
   SqlConn: TSQLConnection;
   SqlQry: TSQLQuery;
-  SqlDtSet: TSQLDataSet;
   Provider: TDataSetProvider;
   Cli: TClientDataSet;
   Dtsource: TDataSource;
+  aux, val: integer;
 begin
-  Result := 'Hello bro, how are you?';
+// premios 100, 1000, 2000, 3000, 10000
+// 100   - 49
+// 1000  - 25
+// 2000  - 15
+// 3000  - 10
+// 10000 - 1
+  try
+    Conn := TConection.Create(Self);
+    SqlConn := TSQLConnection.Create(Self);
+    SqlQry := TSQLQuery.Create(Self);
+    Provider := TDataSetProvider.Create(Self);
+    Cli := TClientDataSet.Create(Self);
 
-//  a := tTestClass.Create(SqlConn, SqlQry, SqlDtSet, Provider, Cli,Dtsource);
+    if Conn.NewConection('DB Geral',tpSqlite,'D:\Dropbox\TESTES FUNCOES\BD Clientes\Clientes.db', SqlConn) then
+      if Conn.NewQuery('MOEDAS',SqlConn, SqlQry) then
+        if Conn.NewDtSetProvider(SqlQry, Provider) then
+        begin
+          SqlQry.Active := true;
+          if Conn.NewClientDtSet(Provider, SqlQry ,Cli) then
+          begin
+            if SqlQry.FieldByName('QNT_CAIXA').AsFloat < 200000 then
+              aux := 71000
+            else if SqlQry.FieldByName('QNT_CAIXA').AsFloat < 400000 then
+              aux := 74000
+            else if SqlQry.FieldByName('QNT_CAIXA').AsFloat < 600000 then
+              aux := 80000
+            else if SqlQry.FieldByName('QNT_CAIXA').AsFloat < 800000 then
+              aux := 90000
+            else if SqlQry.FieldByName('QNT_CAIXA').AsFloat > 800000 then
+              aux := 100000;
+
+            aux := Random(aux);
+            if (aux > 0) and (aux < 48999) then
+              val := 100
+            else if (aux > 49000) and (aux < 73999) then
+              val := 1000
+            else if (aux > 74000) and (aux < 88999) then
+               val := 2000
+            else if (aux > 89000) and (aux < 98999) then
+              val := 3000
+            else if (aux > 99000) and (aux < 10000) then
+              val := 10000
+            else
+            begin
+              val := 100;
+              aux := 24;
+            end;
+
+            //Result := 'Numero sorteado: 24 ... Valor prêmio: 100';
+
+            SqlQry.Close;
+            SqlQry.SQL.Text := 'update moedas set qnt_caixa = qnt_caixa -' + IntToStr(val)+ ' where id_moeda = 1';
+            SqlQry.ExecSQL(true);
+
+            SqlQry.Close;
+            SqlQry.SQL.Text := 'select * from moedas where id_moeda = 1';
+            SqlQry.Open;
+            Result := 'Numero sorteado: '+IntToStr(aux)+' ... Valor prêmio: '+IntToStr(val) + '.... quantidade em caixa: ' + SqlQry.FieldByName('QNT_CAIXA').AsString;
+          end;
+//            Result := Conn.DataToJson(SqlQry);
+
+        end;
+
+  except
+
+  end;
 end;
 
 function TPessoas.TesteBD: TJSONArray;
@@ -54,7 +137,7 @@ begin
     Cli := TClientDataSet.Create(Self);
 
     if Conn.NewConection('DB Geral',tpSqlite,'D:\Dropbox\TESTES FUNCOES\BD Clientes\Clientes.db', SqlConn) then
-      if Conn.NewQuery('PESSOAS',SqlConn, SqlQry) then
+      if Conn.NewQuery('MOEDAS',SqlConn, SqlQry) then
         if Conn.NewDtSetProvider(SqlQry, Provider) then
         begin
           SqlQry.Active := true;

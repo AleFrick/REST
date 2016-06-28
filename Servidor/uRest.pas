@@ -56,10 +56,10 @@ begin
           Button1.Caption := 'Desligar';
         end;
       except
+      { DSServer1.Stop;
+        Button1.Caption := 'Ligar';}
         on E: Exception do
           ShowMessage(E.ClassName+' error raised, with message '+E.Message);
-        DSServer1.Stop;
-        Button1.Caption := 'Ligar';
       end;
 
     end else
@@ -80,9 +80,7 @@ var
   Dtsource: TDataSource;
   a: String;
 begin
-
-  {
-  FreeAndNil(Conn);
+ {FreeAndNil(Conn);
   FreeAndNil(SqlConn);
   FreeAndNil(SqlQry);
   FreeAndNil(Provider);
@@ -99,9 +97,9 @@ begin
       RegisterServerClasses(TComponent(TPessoas), DSServer1);
       Result := True;
     except
-      Result := false;
+      //Result := false;
       on E: Exception do
-        ShowMessage(E.ClassName+' error raised, with message: '+ E.Message));
+        ShowMessage(E.ClassName+' error raised, with message: '+ E.Message);
     end;
   end;
 end;

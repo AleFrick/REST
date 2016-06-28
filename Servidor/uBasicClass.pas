@@ -117,7 +117,7 @@ end;
 
 { TFunctionClass }
 
-function TFunctionClass.StrToJson(Value: String): TJSONArray;
+function TFunctionClass.StrToJson(Value: String): TJSONArray; //sem necessidade
 var
   StrJson: TJSONObject;
 begin

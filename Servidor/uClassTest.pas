@@ -22,7 +22,6 @@ implementation
 
 function tTestClass.teste: String;
 begin
-
   Result := 'asdasd';
 end;
 
